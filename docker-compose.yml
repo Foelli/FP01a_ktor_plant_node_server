@@ -1,0 +1,7 @@
+services:
+  ktor:
+    build: .
+    container_name: ktor-plant-server
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
