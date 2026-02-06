@@ -10,36 +10,13 @@ object TaskRepository {
 
     fun allTasks(): List<Task> = tasks
 
-    /*
-
-    // Lambda Version
-
     fun tasksByPriority(priority: Priority) = tasks.filter {
         it.priority == priority
-        
-    }*/
-
-    fun tasksByPriority(priority: Priority): List<Task> {
-        val result = mutableListOf<Task>()
-
-        for (task in tasks) {
-            if (task.priority == priority) {
-                result.add(task)
-            }
-        }
-
-        return result
     }
 
-    fun taskByName(name: String): Task {
-        for (task in tasks) {
-            if (task.name.equals(name, ignoreCase = true)) {
-                return task
-            }
-        }
-        throw NoSuchElementException("No task with name $name")
+    fun taskByName(name: String) = tasks.first {
+        it.name.equals(name, ignoreCase = true)
     }
-
 
     fun addTask(task: Task) {
         if (taskByName(task.name) != null){

@@ -1,6 +1,6 @@
 package foel.li
 
-import foel.li.model.tasks
+import foel.li.model.TaskRepository.tasks
 import foel.li.model.tasksAsTable
 import io.ktor.http.*
 import io.ktor.server.application.*
