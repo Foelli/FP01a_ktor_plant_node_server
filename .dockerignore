@@ -1,5 +1,7 @@
 .gradle
 build
-.idea
-.kotlin
 out
+.idea
+.git
+.gitignore
+*.iml

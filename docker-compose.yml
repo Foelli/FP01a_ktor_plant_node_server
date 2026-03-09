@@ -1,7 +1,19 @@
 services:
-  ktor:
-    build: .
-    container_name: ktor-plant-server
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ktor-app
     ports:
-      - "8080:8080"
+      - "9292:9292"
+    environment:
+      PORT: 9292
+
+      # InfluxDB config (for later)
+      INFLUX_URL: ${INFLUX_URL:-http://localhost:8086}
+      INFLUX_ORG: ${INFLUX_ORG:-my-org}
+      INFLUX_BUCKET: ${INFLUX_BUCKET:-sensor-data}
+      INFLUX_TOKEN: ${INFLUX_TOKEN:-dev-token}
+
+      JAVA_OPTS: ${JAVA_OPTS:--XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0}
     restart: unless-stopped

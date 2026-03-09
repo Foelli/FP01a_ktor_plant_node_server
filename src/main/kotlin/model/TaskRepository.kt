@@ -1,11 +1,11 @@
 package foel.li.model
 
 object TaskRepository {
-    val tasks = mutableListOf(
-        Task("Cleaning", "Clean the house", Priority.Low),
-        Task("Gardening", "Mow the lawn", Priority.Medium),
-        Task("Shopping", "Buy Food", Priority.High),
-        Task("Dancing", "Let's Dance", Priority.Vital)
+    private val tasks = mutableListOf(
+        Task("cleaning", "Clean the house", Priority.Low),
+        Task("gardening", "Mow the lawn", Priority.Medium),
+        Task("shopping", "Buy the groceries", Priority.High),
+        Task("painting", "Paint the fence", Priority.Medium)
     )
 
     fun allTasks(): List<Task> = tasks
@@ -14,14 +14,18 @@ object TaskRepository {
         it.priority == priority
     }
 
-    fun taskByName(name: String) = tasks.first {
+    fun taskByName(name: String) = tasks.find {
         it.name.equals(name, ignoreCase = true)
     }
 
     fun addTask(task: Task) {
-        if (taskByName(task.name) != null){
-            throw IllegalStateException("Task already exists")
+        if (taskByName(task.name) != null) {
+            throw IllegalStateException("Cannot duplicate task names!")
         }
         tasks.add(task)
+    }
+
+    fun removeTask(name: String): Boolean {
+       return tasks.removeIf { it.name == name }
     }
 }

@@ -39,6 +39,7 @@ dependencies {
 
     // --- Config ---
     implementation("io.ktor:ktor-server-config-yaml")
+    implementation("io.ktor:ktor-client-content-negotiation")
 
     // --- Metrics (Prometheus → Grafana) ---
     implementation("io.ktor:ktor-server-metrics-micrometer")
@@ -62,4 +63,5 @@ dependencies {
     // --- Testing ---
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+    testImplementation("com.jayway.jsonpath:json-path:2.9.0")
 }
